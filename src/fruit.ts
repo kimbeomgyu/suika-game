@@ -32,7 +32,8 @@ class Fruit {
     return setInterval(() => {
       Body.setPosition(this.element, {
         x:
-          this.element.position.x + this.element.circleRadius! < 590
+          this.element.position.x + this.element.circleRadius! <
+          (window.screen.width >= 1000 ? 590 : window.screen.width - 30)
             ? this.element.position.x + 1
             : this.element.position.x,
         y: this.element.position.y,
