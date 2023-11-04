@@ -3,13 +3,21 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "kimbeomgyu",
+    "email": "uuid@kakao.com"
+  },
+  "homepage": "https://kimbeomgyu.github.io/suika-game",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -u 'github-actions-bot <support+actions@github.com>'"
   },
   "devDependencies": {
     "@types/matter-js": "^0.19.2",
+    "gh-pages": "^6.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   },
