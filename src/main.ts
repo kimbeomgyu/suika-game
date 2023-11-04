@@ -31,6 +31,9 @@ let disableAction = false;
 let interval: number | null = null;
 
 async function clear(event: KeyboardEvent | TouchEvent) {
+  event.preventDefault && event.preventDefault();
+  event.stopPropagation && event.stopPropagation();
+
   let keyCode = "ArrowLeft";
 
   if (event instanceof KeyboardEvent) {
@@ -47,6 +50,9 @@ async function clear(event: KeyboardEvent | TouchEvent) {
 }
 
 function controlAction(event: KeyboardEvent | TouchEvent) {
+  event.preventDefault && event.preventDefault();
+  event.stopPropagation && event.stopPropagation();
+
   if (currentFruit === null || disableAction) {
     return;
   }
@@ -119,10 +125,17 @@ function init() {
   document.addEventListener("keyup", clear);
   document.addEventListener("keydown", controlAction);
 
+  // Disable Events
+  ["drag", "touchstart", "touchend", "touchmove"].forEach((eventName) =>
+    document.addEventListener(eventName, (e) => {
+      e.preventDefault && e.preventDefault();
+      e.stopPropagation && e.stopPropagation();
+    })
+  );
+
   // Touch Events
   document.addEventListener("touchend", clear);
   document.addEventListener("touchstart", controlAction);
-  // document.addEventListener("touchmove", controlAction);
 
   // Collision Events
   Events.on(engine, "collisionStart", collision(world));
